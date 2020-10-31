@@ -65,24 +65,24 @@ def test_function_name_had_cap_letter():
         assert len(re.findall(
             '([A-Z])', function[0])) == 0, "You have used Capital letter(s) in your function names"
 
-def test_dict_approach():
-    *_, = dict_approach()
+def test_profile_using_dict():
+    *_, = profile_using_dict()
     assert len(_) > 1, "Returns all the calculation"
 
-def test_named_tuple():
-    *_, = named_tuple()
+def test_profile_using_named_tuple():
+    *_, = profile_using_named_tuple()
     assert len(_) > 1, "Returns all the calculation"
 
 def test_named_tuple_vs_dict():
     cnt = 0
     for _ in range(10):
         start1 = perf_counter()
-        *_, = dict_approach()
+        *_, = profile_using_dict()
         end1 = perf_counter()
         elapsed1 = end1 - start1
 
         start2 = perf_counter()
-        *_, = named_tuple()
+        *_, = profile_using_named_tuple()
         end2 = perf_counter()
         elapsed2 = end2 - start2
 
