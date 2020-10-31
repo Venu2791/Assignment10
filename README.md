@@ -4,25 +4,25 @@
 
 In named tuples, each object stored in them can be accessed through a unique (human-readable) identifier. This frees you from having to remember integer indexes, or resorting to workarounds like defining integer constants as mnemonics for your indexe
 
-### Q1. Dictionary approach:
+### Q1) Dictionary approach:
 This finds the following for different fake profiles and returns   
 the most common bloodgroup,  
 mean current location,  
 oldest person age  
-and the average age.  
+and the average age
 
 This method is executed using Dictionary approach.
 
-### Q2. Named Tuple approach:
+### Q2) Named Tuple approach:
 Same as Q1 but this method is executed using namedtuple approach.
 
-### Q3. Stock comparison:
-Using namedtuple generates 100 companies from pyfake library and create a random dataset
+### Q3) Stock comparison:
+Using named tuple generates 100 companies from pyfake library and create a random dataset
 The return value is - highest stock price on a day, open-stock price and close-stock price.
 
 ## Test cases
 1) Checks if there is a README.md file
-2) Checks if the README.md file has alteast 500 words
+2) Checks if the README.md file has at least 300 words
 3) Checks if the required functions are present in the README.md file
 4) Checks README.md file formatting
 5) Checks if proper indentations are present throughout the python file
