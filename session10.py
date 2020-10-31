@@ -5,10 +5,9 @@ from decimal import Decimal
 from faker import Faker
 from collections import namedtuple, Counter
 
-
-fake = Faker()
 ## Q2 10000 Random Profiles using dictionary approach
-def dict_approach():
+def profile_using_dict():
+    fake = Faker()
     counts, dict1 = dict(), dict()
     mean_loc1, mean_loc2 = 0, 0
     new_age, sum_age = 0, 0
@@ -31,7 +30,8 @@ def dict_approach():
     return counts
 
 ## Q1 10000 Random Profiles using dictionary approach
-def named_tuple():
+def profile_using_named_tuple():
+    fake = Faker()
     counts = dict()
     
     sum_age, mean_loc1, mean_loc2 = 0, 0, 0
