@@ -1,6 +1,6 @@
-# Namedtuples.
+# Assignment 10 - Namedtuples
 
-### Namedtuples are immutable like regular tuples. Once you store something in them you cannot modify it.
+## Namedtuples are immutable like regular tuples. Once you store something in them you cannot modify it.
 
 In named tuples, each object stored in them can be accessed through a unique (human-readable) identifier. This frees you from having to remember integer indexes, or resorting to workarounds like defining integer constants as mnemonics for your indexe
 
