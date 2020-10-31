@@ -6,12 +6,7 @@ from faker import Faker
 from collections import namedtuple, Counter
 
 ## Q2 10000 Random Profiles using dictionary approach
-def return_dict_profile() -> dict:
-    """Returns a new fake profile from Faker lib every time 
-
-    Returns:
-        dict: contanting keys name blood_type age curr_loc in order.
-    """
+def return_dict_profile():
     p = faker.profile()
     p = {
         'name': p['name'],
@@ -23,39 +18,21 @@ def return_dict_profile() -> dict:
     return p
 
 
-def return_n_dict_profiles(num_profiles: int):
-    "Calls return_dict_profile num_profiles times "
+def return_n_dict_profiles(num_profiles):
     if not isinstance(num_profiles, int):
         raise ValueError("Number of Profiles needs to be an integer")
     profiles = {i: return_dict_profile() for i in range(num_profiles)}
     return profiles
 
 
-def get_dict_mc_blood_type(dict_profiles: dict) -> str:
-    """Returns most common blood type location for dict of dict of profiles
-
-    Args:
-        dict_profiles (dict):dict of dict of profiles
-
-    Returns:
-        str: blood type
-    """
-
+def get_dict_mc_blood_type(dict_profiles):
     counter = Counter()
     for key, profile in dict_profiles.items():
         counter[profile.get('blood_type', '')] += 1
     return counter.most_common(1)[0][0]
 
 
-def get_dict_mean_loc(dict_profiles: dict) -> tuple:
-    """Returns mean location for dict of dict of profiles
-
-    Args:
-        dict_profiles (dict):dict of dict of profiles
-
-    Returns:
-        tuple: mean location (lat, long)
-    """
+def get_dict_mean_loc(dict_profiles):
     mean_loc = (0, 0)
     num = len(dict_profiles)
     for key, p in dict_profiles.items():
@@ -64,15 +41,7 @@ def get_dict_mean_loc(dict_profiles: dict) -> tuple:
     return mean_loc[0]/num, mean_loc[1]/num
 
 
-def get_dict_oldest_age(dict_profiles: dict) -> int:
-    """Returns oldest age in dict of dict of profiles
-
-    Args:
-        dict_profiles (dict):dict of dict of profiles
-
-    Returns:
-        int: largest age
-    """
+def get_dict_oldest_age(dict_profiles):
     age = 0
     for key, p in dict_profiles.items():
         p_age = p.get('age', 0)
@@ -81,28 +50,12 @@ def get_dict_oldest_age(dict_profiles: dict) -> int:
     return age
 
 
-def get_dict_avg_age(dict_profiles: dict) -> float:
-    """Returns avg age in dict of dict of profiles
-
-    Args:
-        dict_profiles (dict):dict of dict of profiles
-
-    Returns:
-        float: average age
-    """
+def get_dict_avg_age(dict_profiles):
     age = sum(p.get('age', 0) for key, p in dict_profiles.items())
     return age/len(dict_profiles)
 
 ## Q1 10000 Random Profiles using named tuple approach
-def get_age(x: date) -> int:
-    """Get current age from date
-
-    Args:
-        x (date): datetime.date object
-
-    Returns:
-        int: current age
-    """
+def get_age(x):
     return int((date.today() - x).days/365)
 
 
@@ -111,12 +64,7 @@ nt_keys_str = 'name blood_type age curr_loc'
 profile = namedtuple('Profile', nt_keys_str)
 
 
-def return_n_t_profile() -> namedtuple:
-    """Returns a new fake profile from Faker lib every time 
-
-    Returns:
-        namedtuple: contanting name blood_type age curr_loc in order.
-    """
+def return_n_t_profile():
     profile = namedtuple('Profile', nt_keys_str)
     p1 = faker.profile()
     nt_1 = profile(p1['name'], p1['blood_group'], get_age(
@@ -124,8 +72,7 @@ def return_n_t_profile() -> namedtuple:
     return nt_1
 
 
-def return_profiles_n_t(num_profiles: int) -> namedtuple:
-    "Returns a namedtuple of nametuples of profiles"
+def return_profiles_n_t(num_profiles):
     if not isinstance(num_profiles, int):
         raise ValueError("Number of Profiles needs to be an integer")
 
@@ -135,31 +82,14 @@ def return_profiles_n_t(num_profiles: int) -> namedtuple:
     return nt_parent(*n_profies)
 
 
-def get_nt_mc_blood_type(nt_profiles: namedtuple) -> str:
-    """Returns most common blood type location for namedtuple of nametuples of profiles
-
-    Args:
-        nt_parofiles (namedtuple):namedtuple of nametuples of profiles
-
-    Returns:
-        str: blood type
-    """
-
+def get_nt_mc_blood_type(nt_profiles):
     counter = Counter()
     for p in nt_profiles:
         counter[p[1]] += 1
     return counter.most_common(1)[0][0]
 
 
-def get_nt_mean_loc(nt_profiles: namedtuple) -> tuple:
-    """Returns mean location for namedtuple of nametuples of profiles
-
-    Args:
-        nt_parofiles (namedtuple):namedtuple of nametuples of profiles
-
-    Returns:
-        tuple: mean location (lat, long)
-    """
+def get_nt_mean_loc(nt_profiles):
     mean_loc = (0, 0)
     num = len(nt_profiles._fields)
     for p in nt_profiles:
@@ -167,15 +97,7 @@ def get_nt_mean_loc(nt_profiles: namedtuple) -> tuple:
     return mean_loc[0]/num, mean_loc[1]/num
 
 
-def get_nt_oldest_age(nt_profiles: namedtuple) -> int:
-    """Returns oldest age in namedtuple of nametuples of profiles
-
-    Args:
-        nt_profiles (namedtuple): namedtuple of nametuples of profiles
-
-    Returns:
-        int: largest age
-    """
+def get_nt_oldest_age(nt_profiles):
     age = 0
     for p in nt_profiles:
         if p[-2] > age:
@@ -183,15 +105,7 @@ def get_nt_oldest_age(nt_profiles: namedtuple) -> int:
     return age
 
 
-def get_nt_avg_age(nt_profiles: namedtuple) -> float:
-    """Returns avg age in namedtuple of nametuples of profiles
-
-    Args:
-        nt_profiles (namedtuple): namedtuple of nametuples of profiles
-
-    Returns:
-        float: average age
-    """
+def get_nt_avg_age(nt_profiles):
     age = sum(p[-2] for p in nt_profiles)
     return age/len(nt_profiles._fields)
 
