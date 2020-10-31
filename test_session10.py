@@ -13,17 +13,9 @@ main_funcs = [func for func in inspect.getmembers(main) if inspect.isfunction(fu
 
 
 
-README_CONTENT_CHECK_FOR = []
+README_CONTENT_CHECK_FOR = ["namedtuple", "dictionary"]
 
 CHECK_FOR_THINGS_NOT_ALLOWED = []
-
-def test_for_docstrings():
-    for func in main_funcs:
-        assert func[1].__doc__ , f'Function {func[0]} has no doc string'
-
-def test_for_annotations():
-    for func in main_funcs:
-        assert func[1].__annotations__ , f'Function {func[0]} has no annotations'
 
 def test_readme_exists():
     assert os.path.isfile("README.md"), "README.md file missing!"
@@ -34,7 +26,7 @@ def test_readme_contents():
     readme_words = readme.read().split()
     readme.close()
     assert len(
-        readme_words) >= 500, "Make your README.md file interesting! Add atleast 500 words"
+        readme_words) >= 300, "Make your README.md file interesting! Add atleast 300 words"
 
 
 def test_readme_proper_description():
@@ -136,16 +128,3 @@ def test_company_profile():
     profile = main.return_n_companies(1)[0]
     assert profile.low <= profile.open and profile.high >= profile.low and \
     profile.close >= profile.low , f'str(profile)'
-
-def test_return_0_company_profile():
-    profile = main.return_n_companies(0)
-    assert not profile, 'Empty List Should it be '
-
-def test_return_0_nt_profile():
-    profile = main.return_profiles_n_t(0)
-    assert not profile, 'Empty Named Tuple Should it be '
-
-
-def test_return_0_dict_profile():
-    profile = main.return_n_dict_profiles(0)
-    assert not profile, 'Empty dict Should it be '
